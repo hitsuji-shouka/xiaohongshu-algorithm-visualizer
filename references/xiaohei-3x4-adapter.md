@@ -1,6 +1,6 @@
-# Ian Xiaohei 3:4 适配层
+# Ian Xiaohei 3:4 完整知识卡适配层
 
-本文件把已安装的 `ian-xiaohei-illustrations/SKILL.md` 适配为小红书算法知识卡的视觉底图规则。它不是 Ian 原始 Skill 的替代品；每次生图前仍必须读取原始 `SKILL.md` 及其角色和 QA 参考。
+本文件把已安装的 `ian-xiaohei-illustrations/SKILL.md` 适配为小红书算法完整知识卡。它不是 Ian 原始 Skill 的替代品；每次生图前仍必须读取原始 `SKILL.md` 及其角色和 QA 参考。
 
 ## 角色硬约束
 
@@ -12,21 +12,23 @@
 ## 3:4 卡片适配
 
 - Ian 原始规则中的 16:9 只改为 3:4 竖版；不要继承横版构图。
-- 顶部 12%-16% 留给后期标题，底部 25%-32% 留给受控公式、代码或结论；中部由一个小黑主动作占据。
-- 底图只画一个怪诞但成立的算法隐喻，配 2-3 个真实物件；不要画课程课件、PPT 网格、UI 线框或无意义空卡片。
+- 顶部 12%-16% 放模型直接渲染的标题，底部 25%-32% 放模型直接渲染的短公式、代码或结论；中部由一个小黑主动作占据。
+- 每张卡用一个怪诞但成立的算法隐喻，配 2-3 个真实物件和 2-4 个手绘文字教学模块；不要画课程课件、PPT 网格、UI 线框或无意义空卡片。
 - 黑色用于小黑和主要线稿；橙色仅用于主路径，红色仅用于警告/当前状态，蓝色仅用于补充状态。
 - Do not copy Ian's example compositions、物件组合或标注；从当前算法的状态变化重新发明隐喻。
 
 ## 强制生图片段
 
-把以下内容原样合并进每页底图提示词：
+把以下内容原样合并进每页最终成图提示词：
 
 ```text
 Use the installed Ian Xiaohei visual language, adapted to a 3:4 Xiaohongshu card.
 小黑 is required: a small solid-black irregular bean-like creature with white dot eyes,
 tiny thin legs, optional thin arms, and a blank serious expression.
-小黑 performs the core algorithm action. No stick figure, no outline-only human,
-no white round face, no hair, no cute mascot, no PPT infographic.
+小黑 performs the core algorithm action. Render the supplied Chinese title, labels,
+formula and short code exactly as provided in a hand-drawn but legible layout.
+No stick figure, no outline-only human, no white round face, no hair, no cute mascot,
+no PPT infographic, no placeholder cards, no overlapping or cropped text.
 ```
 
 ## 交付前拒绝

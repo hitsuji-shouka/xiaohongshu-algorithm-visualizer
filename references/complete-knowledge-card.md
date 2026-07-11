@@ -2,7 +2,7 @@
 
 ## 成品目标
 
-输出可直接发布的 3:4 知识卡，而不是只有隐喻动作的插画底图。每张卡以“无文字手绘底图 + 确定性技术排版”合成为单张最终 PNG；白色留白用于已规划的内容区，不是让画面空掉。
+输出可直接发布的 3:4 知识卡，而不是只有隐喻动作的插画底图。默认让 `gpt-image-2` 直接生成“手绘插画 + 中文讲解 + 公式/代码”的单张最终 PNG；白色留白用于已规划的内容区，不是让画面空掉。
 
 ## 固定分区
 
@@ -25,10 +25,9 @@
 
 ## 文字与图层
 
-- 生图底图只负责手绘角色、动作、物体和箭头；它必须没有文字、数字、公式、代码、表格或占位卡片。
-- 最终标题、关键术语、公式、命令、代码和结论必须由确定性排版写入最终成品图。
-- 文字层只能落在干净安全区；若底图有错误文字或状态，重生成底图，禁止以半透明覆盖层遮住。
-- 底图与文字层合成后扁平化导出 PNG；只提供 overlay 文案建议不算完成。
+- 生图模型必须直接绘制手绘角色、动作、物体、箭头、标题、关键术语、公式、命令、代码和结论；每页的精确文字由提示词提供。
+- 文字必须落在安全区，并保持手绘知识卡的统一感；若文字、公式或状态有错误，重生成整页，禁止以半透明覆盖层遮住。
+- 只有个别错字且用户明确同意时才允许局部文字修正；只提供 overlay 文案建议不算完成。
 
 ## 画面语言
 
@@ -39,11 +38,12 @@
 
 ## 底图提示词
 
-提示词必须明确主动作、语义锁、阅读顺序和安全区，例如：
+提示词必须明确主动作、语义锁、阅读顺序、安全区和逐字文字内容，例如：
 
 ```text
-one dominant hand-drawn algorithm action; reserve clean header and lower teaching zones;
-no text, no letters, no digits, no equations, no code, no tables, no placeholder cards.
+one dominant hand-drawn algorithm action; render the supplied Chinese title, labels,
+formula and short code exactly as written; no placeholder cards, no text overlap,
+no cropped text, no invented technical details.
 ```
 
-技术文字不交给生图模型；精确文本由后续排版层的唯一文本源提供。
+技术文字交给生图模型直接绘制；提示词中的“精确文字”是唯一内容源，成图后必须逐项核验。
