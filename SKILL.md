@@ -16,6 +16,7 @@ description: Use when creating Chinese Xiaohongshu algorithm explainers, data-st
 - `references/attribution.md`
 - `references/complete-knowledge-card.md`
 - `references/xiaohongshu-copywriting.md`
+- `references/visual-quality-gates.md`
 
 必须遵守：3:4 竖版、白底、黑色手绘线稿、少量红蓝橙强调、角色参与核心动作。
 
@@ -75,6 +76,7 @@ description: Use when creating Chinese Xiaohongshu algorithm explainers, data-st
 5. 把公式、代码和复杂文本列为“后期排版文字”。
 6. 校验算法定义、边界条件、随机数范围、复杂度和证明。
 7. 在交付前检查最终成品图中是否实际包含定义、示例、过程或证明、结论；缺少任一主模块时重新制作。
+8. 按 `references/visual-quality-gates.md` 检查空框、占位线、文字重叠和阅读顺序；任一失败都必须重新生成或重新排版。
 
 ## 必须读取的参考
 
