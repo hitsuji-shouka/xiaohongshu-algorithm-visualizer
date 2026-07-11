@@ -1,6 +1,14 @@
-# 蓄水池抽样成品卡
+# 蓄水池抽样完整轮播案例
 
-![蓄水池抽样完整知识卡](reservoir-sampling-complete-card.png)
+这是算法 Skill 的完整 8 页案例，而不是单张封面。
 
-该案例展示一张高信息密度算法卡应同时包含的问题场景、核心规则、五步示例、公平性证明和复杂度结论。它是最终成品卡，不是插画底图或提示词预览。
+1. [封面与总览](01-cover-and-overview.png)
+2. [问题场景](02-problem.png)
+3. [核心规则](03-core-rule.png)
+4. [五步示例](04-worked-example.png)
+5. [公平性证明](05-fairness-proof.png)
+6. [Java 实现](06-java-code.png)
+7. [选 k 个样本](07-sample-k.png)
+8. [面试总结](08-interview-summary.png)
 
+每张图都是可发布的完整知识卡，包含图解、准确技术信息和结论，不是插画底图或提示词预览。
