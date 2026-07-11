@@ -1,0 +1,39 @@
+# Ian Xiaohei 3:4 适配层
+
+本文件把已安装的 `ian-xiaohei-illustrations/SKILL.md` 适配为小红书算法知识卡的视觉底图规则。它不是 Ian 原始 Skill 的替代品；每次生图前仍必须读取原始 `SKILL.md` 及其角色和 QA 参考。
+
+## 角色硬约束
+
+- 小黑必须是 solid-black 不规则圆体、黑豆、黑盒、漏斗或影子形，不是人类身体比例。
+- 小黑必须有 white dot eyes、细短腿，可按动作加入细手臂；表情空、冷静、认真，不卖萌。
+- No stick figure：禁止圆头火柴人、白色圆脸、头发、衣服、普通线稿小人、可爱吉祥物。
+- 小黑必须执行核心算法动作，例如托住当前候选、把新元素送入候选位、记录概率或拉动状态转换；去掉小黑后隐喻不应仍完整成立。
+
+## 3:4 卡片适配
+
+- Ian 原始规则中的 16:9 只改为 3:4 竖版；不要继承横版构图。
+- 顶部 12%-16% 留给后期标题，底部 25%-32% 留给受控公式、代码或结论；中部由一个小黑主动作占据。
+- 底图只画一个怪诞但成立的算法隐喻，配 2-3 个真实物件；不要画课程课件、PPT 网格、UI 线框或无意义空卡片。
+- 黑色用于小黑和主要线稿；橙色仅用于主路径，红色仅用于警告/当前状态，蓝色仅用于补充状态。
+- Do not copy Ian's example compositions、物件组合或标注；从当前算法的状态变化重新发明隐喻。
+
+## 强制生图片段
+
+把以下内容原样合并进每页底图提示词：
+
+```text
+Use the installed Ian Xiaohei visual language, adapted to a 3:4 Xiaohongshu card.
+小黑 is required: a small solid-black irregular bean-like creature with white dot eyes,
+tiny thin legs, optional thin arms, and a blank serious expression.
+小黑 performs the core algorithm action. No stick figure, no outline-only human,
+no white round face, no hair, no cute mascot, no PPT infographic.
+```
+
+## 交付前拒绝
+
+下列任一情况必须重生成底图：
+
+- 角色不是 black solid body 或没有 white dot eyes。
+- 角色退化为火柴人、白脸线稿人或普通涂鸦人物。
+- 小黑只是站在角落，没有承担算法状态变化。
+- 画面像课程课件、正式流程图或复刻了 Ian 样例构图。

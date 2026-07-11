@@ -18,8 +18,23 @@ description: Use when creating Chinese Xiaohongshu algorithm explainers, data-st
 - `references/xiaohongshu-copywriting.md`
 - `references/visual-quality-gates.md`
 - `references/render-pipeline.md`
+- `references/xiaohei-3x4-adapter.md`
 
 保持白底、黑色手绘线稿、少量红蓝橙强调；角色必须参与核心动作。
+
+## 强制 Xiaohei 视觉依赖
+
+生成任何算法底图前，必须读取已安装的 Ian 原始 Skill：
+
+```text
+${CODEX_HOME:-$HOME/.codex}/skills/ian-xiaohei-illustrations/SKILL.md
+```
+
+并读取该 Skill 的 `references/style-dna.md`、`references/xiaohei-ip.md`、`references/prompt-template.md`、`references/qa-checklist.md`，再读取本 Skill 的 `references/xiaohei-3x4-adapter.md`。
+
+Ian 原始 Skill 的默认画布是 16:9 正文配图；本 Skill 只能按适配层将它转换为 3:4 小红书知识卡底图。No generic fallback：找不到 Ian Skill 或未完成上述阅读时，不得改用通用手绘人物生成并假装符合风格。
+
+No stick figure：角色必须是 Ian 小黑的 solid-black 不规则圆体/黑豆形，白色圆点眼睛、细短腿和可选细手臂；禁止圆头火柴人、白脸线稿人、头发或普通涂鸦人。
 
 ## 默认交付
 
@@ -32,6 +47,27 @@ description: Use when creating Chinese Xiaohongshu algorithm explainers, data-st
 5. 与 PNG 同目录的 `xiaohongshu-copy.md`
 
 所有最终 PNG 必须是精确的 1080 × 1440。
+
+## 直接成品交付
+
+除非用户明确只要脚本、分镜或提示词，必须调用 `image_gen` 生成每页视觉底图，并交付已经完成确定性排版的最终 PNG、简洁正文和 5-10 个精准标签。
+
+不得只输出分镜或提示词；不得只交付底图。只有 `image_gen` 不可用时，才说明原因并输出完整降级提示词。
+
+## 完整知识卡成品约束
+
+最终交付必须是完整知识卡，信息密度中到高：每页包含主结论、Xiaohei 主动作和至少一个辅助教学模块。
+
+不得只生成纯插画底图。底图完成后必须用确定性排版写入标题、公式、代码和结论，导出最终成品图；overlay 文案建议不算完成。
+
+## 严格 3:4 成品检查
+
+3:4 是硬性发布规格，不是提示词里的软性建议：
+
+1. 每页底图提示词必须明确写 `3:4 vertical portrait` 和 `1080 × 1440`。
+2. `image_gen` 返回后必须检查实际像素尺寸，不得只相信提示词或文件名。
+3. 最终图必须精确为 `1080 × 1440`；不得交付 `2:3`、16:9、正方形或多页拼图作为单张轮播。
+4. 在 macOS 上使用 `scripts/normalize_3x4.sh` 补白或裁切后再复检。
 
 ## 不可省略的成图流程
 
@@ -49,12 +85,18 @@ description: Use when creating Chinese Xiaohongshu algorithm explainers, data-st
 
 每页仍必须调用 `image_gen`，但它的职责是生成独立的手绘视觉底图，不是渲染长中文、公式或代码。
 
+先按“强制 Xiaohei 视觉依赖”读取 Ian 原始 Skill 和 3:4 适配层。只吸收其风格 DNA、角色动作和原创隐喻方法；不要复制 Ian 的样例图片、物件组合或已有构图。
+
 提示词必须明确：
 
 ```text
 3:4 vertical portrait, 1080 × 1440, white background,
-black hand-drawn line art, limited red blue orange accents,
-one dominant algorithm action with an active stick-figure character,
+Ian Xiaohei visual DNA adapted for a Xiaohongshu knowledge card:
+minimal black hand-drawn line art, slight natural wobble, limited red blue orange accents,
+one dominant algorithm action with 小黑 as the active subject:
+a small solid-black irregular bean-like creature, white dot eyes, tiny thin legs,
+optional thin arms, blank serious deadpan expression, slightly bizarre but not cute,
+No stick figure, no outline-only human, no round white face, no hair, no mascot styling,
 reserve a clean header zone and a clean lower teaching zone for later typesetting,
 NO text, NO Chinese characters, NO letters, NO digits, NO equations,
 NO code, NO UI labels, NO tables, NO placeholder cards, NO arrows through reserved zones.
@@ -62,7 +104,7 @@ NO code, NO UI labels, NO tables, NO placeholder cards, NO arrows through reserv
 
 底图可有留白，但留白必须是后续真实内容的安全区；不得要求模型生成空卡片或伪表格。不要使用一张含文字的成图再图生图修改下一页。
 
-生成后先用 `view_image` 检查每张底图。只要出现残留文字、错误变量/样本数、无法解释状态变化的箭头、空框或构图侵入安全区，就重新生成该页底图；不要用半透明白框掩盖错误。
+生成后先用 `view_image` 检查每张底图。只要出现残留文字、错误变量/样本数、无法解释状态变化的箭头、空框、火柴人、白脸线稿人，或构图侵入安全区，就重新生成该页底图；不要用半透明白框掩盖错误。
 
 ### 3. 确定性排版所有技术文字
 
@@ -82,6 +124,7 @@ NO code, NO UI labels, NO tables, NO placeholder cards, NO arrows through reserv
 2. 检查文字/公式/代码的边界框无重叠、无截断，且箭头不穿过文字。
 3. 在 100% 尺寸检查细节，并在手机缩略图检查阅读顺序。
 4. 检查实际像素为 1080 × 1440；macOS 可用 `scripts/normalize_3x4.sh` 归一化后复检。
+5. 按 Ian QA 检查小黑是否承担算法动作、是否保持黑色实心与白点眼睛、是否没有退化为 PPT 图或火柴人。
 
 任一失败，修正排版或重新生成底图；不得带着残留错误交付。
 
@@ -107,6 +150,18 @@ NO code, NO UI labels, NO tables, NO placeholder cards, NO arrows through reserv
 - `references/qa-checklist.md`
 
 验证定义、示例、索引、随机范围、公式、复杂度和变体边界。发布文案按 `references/xiaohongshu-copywriting.md` 写入 `xiaohongshu-copy.md`，其中记录标题、备选、正文、标签、页数、比例、生成信息和检查结果。
+
+## 发布文案
+
+读取 `references/xiaohongshu-copywriting.md`，并交付：
+
+```text
+标题：1 个最终标题，另附 2 个备选标题
+简介：3-6 个短段，使用 4-8 个有语义的 emoji，至少 3 个分点
+标签：5-10 个精准标签
+```
+
+`xiaohongshu-copy.md` 与 PNG 同目录保存，不能只在聊天中展示。
 
 ## 禁止
 
