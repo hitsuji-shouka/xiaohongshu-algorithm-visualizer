@@ -14,6 +14,7 @@ description: Use when creating Chinese Xiaohongshu algorithm explainers, data-st
 - `references/visual-style.md`
 - `references/xiaohongshu-layout.md`
 - `references/attribution.md`
+- `references/complete-knowledge-card.md`
 
 必须遵守：3:4 竖版、白底、黑色手绘线稿、少量红蓝橙强调、角色参与核心动作。
 
@@ -33,11 +34,11 @@ description: Use when creating Chinese Xiaohongshu algorithm explainers, data-st
 
 除非用户明确只要脚本、分镜或提示词，否则必须直接完成可发布交付：
 
-1. 必须调用内置 `image_gen`，为每一页生成一张独立的 3:4 竖版配图；不能只描述“应该怎么画”。
-2. 默认生成 6-8 张配图，或使用用户明确要求的页数；每张图先表达一个动作，避免长中文、代码和公式。
-3. 生成后直接展示配图，再给出标题、简洁正文和 5-10 个精准标签。
-4. 标题、代码、公式和长中文作为准确的 overlay 文案提供，不依赖模型在图片中生成长文字。
-5. 不得只输出分镜或提示词。只有 `image_gen` 不可用时，才说明原因并把每页完整提示词作为降级交付。
+1. 必须调用内置 `image_gen`，为每一页生成一张独立的 3:4 竖版完整知识卡；不能只描述“应该怎么画”。
+2. 默认生成 6-8 张完整知识卡，或使用用户明确要求的页数；信息密度为中到高，每页包含主结论、主图解和至少一个辅助教学模块。
+3. 代码、公式、状态表和结论必须进入最终成品图的排版。若需要后期排版，输出的是已经排好字的最终成品图；overlay 文案建议不算完成。
+4. 生成后直接展示配图，再给出标题、简洁正文和 5-10 个精准标签。
+5. 不得只生成纯插画底图、分镜或提示词；不得只输出分镜或提示词。只有 `image_gen` 不可用时，才说明原因并把每页完整提示词作为降级交付。
 
 ## 默认结构
 
@@ -62,6 +63,7 @@ description: Use when creating Chinese Xiaohongshu algorithm explainers, data-st
 4. 为每页设计角色动作，不做纯装饰图。
 5. 把公式、代码和复杂文本列为“后期排版文字”。
 6. 校验算法定义、边界条件、随机数范围、复杂度和证明。
+7. 在交付前检查最终成品图中是否实际包含定义、示例、过程或证明、结论；缺少任一主模块时重新制作。
 
 ## 必须读取的参考
 
