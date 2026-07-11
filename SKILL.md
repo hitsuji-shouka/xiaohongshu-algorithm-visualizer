@@ -15,6 +15,7 @@ description: Use when creating Chinese Xiaohongshu algorithm explainers, data-st
 - `references/xiaohongshu-layout.md`
 - `references/attribution.md`
 - `references/complete-knowledge-card.md`
+- `references/xiaohongshu-copywriting.md`
 
 必须遵守：3:4 竖版、白底、黑色手绘线稿、少量红蓝橙强调、角色参与核心动作。
 
@@ -94,15 +95,17 @@ description: Use when creating Chinese Xiaohongshu algorithm explainers, data-st
 
 ## 发布文案
 
+先读取 `references/xiaohongshu-copywriting.md`。发布文案必须是可直接粘贴到小红书的格式，不得只给一段平铺的技术简介。
+
 交付图片后，必须给出与该轮播一一对应、可直接发布的以下内容：
 
 ```text
 标题：1 个最终标题，另附 2 个备选标题
-简介：80-160 字，说明读者会解决什么问题、学到什么，不复述整套图片
+正文/简介：3-6 个短段，使用 4-8 个有语义的 emoji，至少 3 个分点；说明读者会解决什么问题、学到什么，不复述整套图片
 标签：5-10 个精准标签，覆盖主题、受众和使用场景
 ```
 
-标题要优先呈现问题、反直觉点或面试价值；简介要自然、简洁，避免泛泛而谈；标签不得使用无关热门词。
+标题要优先呈现问题、反直觉点或面试价值；正文要有 `📌`、`✅`、`💡`、`🎯`、`💾` 等清晰层次；标签不得使用无关热门词。
 
 ## 禁止
 
